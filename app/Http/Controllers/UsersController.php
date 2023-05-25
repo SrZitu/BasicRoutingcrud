@@ -35,15 +35,6 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required|confirmed|min:6'
-        ]);
-
-        $formFields['password'] = bcrypt($formFields['password']);
-
-        User::create($formFields);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
